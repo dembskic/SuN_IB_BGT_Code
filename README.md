@@ -14,6 +14,6 @@ python main.py
 
 ```
 
-This program is written in Python3. Required packages include Numpy, Matplotlib, Pandas, Seaborn and SciPy. These modules are readily available via common package managers.
+This program is written in Python3. Required packages include Numpy, Matplotlib, Pandas, Seaborn and SciPy. These modules are readily available via common package managers. Examples for the necessary formatting of the chi^2 minimization output files and excitation energy level files are also provided for the case of the beta-decay of 71Fe. 
 
 Any questions regarding this code can be sent to cdembski@nd.edu.
