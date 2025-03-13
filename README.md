@@ -9,9 +9,10 @@ containing the excitation energy that each parameter corresponds to within the c
 These paths, and further variables related to the specific beta-decay under study, must be provided within the config.py file. Further instructions can be found in the comments within that file. 
 Once all variables have been provided, the program can be executed with the command
 
-'''
+```
 python main.py
-'''
+
+```
 
 This program is written in Python3. Required packages include Numpy, Matplotlib, Pandas, Seaborn and SciPy. These modules are readily available via common package managers.
 
