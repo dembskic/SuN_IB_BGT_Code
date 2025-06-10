@@ -3,7 +3,7 @@ associated uncertainty band. It is capable of treating contributions from neutro
 a spectrum for the decay of the child nucleus).
 
 The code is designed to accept the output files of the Chi^2 minimization routine commonly used by the SuN group. These files should have everything except the lines that express the normalized
-parameters after minimization (typically called npar). The files should also be named numerically based on their fit number, i.e. 1.txt, 2.txt. etc., and kept in a folder with text files 
+parameters after minimization (typically called npar). The files should also be named numerically based on their fit number, i.e. 1.txt, 2.txt, etc., and kept in a folder with text files 
 containing the excitation energy that each parameter corresponds to within the child nucleus. 
 
 These paths, and further variables related to the specific beta-decay under study, must be provided within the config.py file. Further instructions can be found in the comments within that file. 
