@@ -3,6 +3,7 @@
 import numpy as np 
 import pandas as pd
 import matplotlib.pyplot as plt
+import sys
 
 
 
@@ -17,6 +18,8 @@ def renormalize(array,child_index,num_neutron_pars):
 
     running_neutron_sum = np.zeros(num_neutron_pars)
     
+    last_child_index = int(child_index[-1])
+    first_child_index = int(child_index[0])
 
     #iterate over all simulations
     for i in range(len(array)):
@@ -28,8 +31,11 @@ def renormalize(array,child_index,num_neutron_pars):
 
         #If the child decay is included, extract it from the file 
         if child_index != 'none':
-            child_contribution = norm_factors[child_index]
-            child_unc = norm_factors_unc[child_index]
+            child_contribution=0
+            child_unc=0
+            for k in range(len(child_index)):
+                child_contribution += norm_factors[child_index[k]]
+                child_unc = np.sqrt(child_unc**2+norm_factors_unc[child_index[k]]**2)
 
         #If there is no child decay included, set its contribution to zero
         else:
@@ -49,7 +55,7 @@ def renormalize(array,child_index,num_neutron_pars):
         
         #neutron components should follow daughter contribution. Sum up renormalized contributions of all neutron decay components
         if child_contribution != 0:
-            neutron_contribution = norm_factors_new[child_index+1:]
+            neutron_contribution = norm_factors_new[(last_child_index+1):]
             running_neutron_sum += neutron_contribution
             neutron_sum = np.sum(neutron_contribution)
             print("Neutron contribution:", neutron_sum)
@@ -57,13 +63,13 @@ def renormalize(array,child_index,num_neutron_pars):
             #Get all parent gamma-decay compoenents without the child decay contribution. Check to ensure the parent 
             #neutron + gamma decay components are normalized properly 
 
-            norm_factors_new = norm_factors_new[:child_index]
-            norm_factors_new_unc = norm_factors_new_unc[:child_index]
+            norm_factors_new = norm_factors_new[:first_child_index]
+            norm_factors_new_unc = norm_factors_new_unc[:first_child_index]
             norm_check = np.sum(norm_factors_new)+neutron_sum
             if np.allclose(norm_check,1) != True:
                 print("Normalization error for fit number ", i)
                 print("Total component sum: ", norm_check)
-
+                sys.exit()
             print(" ")
 
         #reindexing must be done slightly differently if the child decay isn't included

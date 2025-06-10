@@ -53,12 +53,13 @@ for i in range(1,num_sims+1):
 
 
 #If child decay is included, its index follows the last experimental level in the chi^2 file
-if child == 1:
-    child_index=len(energies_e)
+if child > 0:
+    child_index = np.zeros(child)
+    for i in range(len(child_index)):
+        child_index[i]=int(len(energies_e)+i)
 #If child decay is not included, set index to none
 if child == 0:
     child_index='none'
-
 
 
 n_par_tot = len(df_array[0][2])
@@ -155,6 +156,7 @@ else:
     IB.create_plots(path=fig_path, energies=energies_e, IB=cumulative_averages, IB_upper=upper_bound, IB_lower=lower_bound, 
                 BGT=cumulative_BGT, BGT_upper=upper_bound_BGT, BGT_lower=lower_bound_BGT, 
                 Sn=Sn, tot_energies=tot_energy, neutron_IB=tot_cumulative, neutron_BGT=tot_cumulative_BGT)
+
 
 
 

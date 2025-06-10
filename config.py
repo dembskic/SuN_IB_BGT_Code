@@ -5,7 +5,7 @@ A = 71
 Z = 26
 
 #half-life and uncertainty
-half_life = .0357 #in s
+half_life = .035 #in s
 half_life_uncertainty = .002
 
 #Beta-decay Q-value 
@@ -20,12 +20,11 @@ num_sims = 10
 #Path to files output by chi2 code - named numerically
 path = "/Users/cadedembski/Desktop/Research/MSU/Beta_Feeding_Code/test_71Fe"
 
-#Name of text file with energy levels that each parameter corresponds to 
+#Name of text file with energy levels that each parameter corresponds to (don't include path)
 energy_file = "71_exp_levels.txt"
 
-#Boolean for if there is a parameter corresponding to the child decay or not. 0=no, 1=yes
+#Number of parameters corresponding to child decays. Should be listed at the end of the energy files.
 child = 1
-
 
 #Neutron Parameters 
 #Boolean for if there are neutron simulations. 0=no, 1=yes
@@ -40,6 +39,8 @@ if neutrons == 0:
 
 #Neutron separation energy. If not including neutrons, set to 0
 Sn = 5.91
+if neutrons == 0:
+    Sn=0
 
 
 

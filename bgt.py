@@ -349,9 +349,9 @@ def BGT_calc(Z, A, ground_state_to_ground_state_Q_value, decay_type, half_life, 
     for transition in beta_decay.transitions:
         beta_feeding_error = transition.final.beta_feeding_error
         #Combination of errors for K constant, vector/axial vector coupling ratios, and half life
-        consts_err = (1.7/6143.6)**2+2*(.0029/1.2695)**2+(half_life_uncertainty/half_life)**2
+        consts_err2 = (1.7/6143.6)**2+2*(.0029/1.2695)**2+(half_life_uncertainty/half_life)**2
         if transition.final.beta_feeding != 0:
-            bgt_error = transition.B_GT() * np.sqrt(np.power(beta_feeding_error/transition.final.beta_feeding,2) + consts_err)
+            bgt_error = transition.B_GT() * np.sqrt(np.power(beta_feeding_error/transition.final.beta_feeding,2) + consts_err2)
             errors.append(bgt_error)
             cumulative_bgt_error += math.pow(bgt_error,2) 
         else:
